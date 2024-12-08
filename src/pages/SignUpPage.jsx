@@ -4,67 +4,62 @@ import Logo from "../components/ToDoLogo";
 import AllPurposeInput from "../components/allPurposeInput";
 import { useState } from "react";
 import { Link } from "react-router-dom"
+import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SignUpPage = () => {
   // Background styling for the signup page
-  const signUpBackground = `bg  bg-cover bg-center h-screen w-full flex justify-center items-center`;
-  const [buttonHovered, setButtonHoverStatus] = useState(false);
-  const [forgotPasswordHovered, setForgotPasswordHoverStatus] = useState(false);
+  const [formData, setFormData] = useState({userName:"", email:"", password:"", confirmedPassword:""});
+  const {userName, email, password, confirmedPassword} = formData;
 
-  const buttonStyling = `text-white px-4 py-2 rounded w-full ${
-    buttonHovered ? "bg-blue-600" : "bg-blue-700"
-  }`;
-  const forgotPasswordHoverStyle = `mt-4 text-blue-600 text-center ${
-    forgotPasswordHovered ? "" : "underline"
-  }`;
+  const onchangeFunction = (e) => {
+    setFormData((previousState) => ({...previousState, [e.target.name]: e.target.value}));
+  }
+  const signUpBackground = `bg  bg-cover bg-center h-screen w-full flex justify-center items-center`;
+  const UserIcon = <FontAwesomeIcon icon={faUserAlt} size="1x"/>
+  const buttonStyling = `bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded w-full hover:bg-blue-600`;
+  const hoverUnderline = "text-sm mt-4 text-blue-700 text-center hover:underline"
 
   return (
     <div className={signUpBackground}>
       <AllPurposeContainer containerStyling="bg-white p-8 rounded-xl border border-blue-300 shadow-lg max-w-md w-full flex flex-col justify-center  items-center min-h-[400px]">
         <Logo logoStyling="w-30 h-28" />
 
-        <div className="w-full flex flex-col mt-2 mb-2">
-          <AllPurposeLabel
-            labelStyling="text-black text-3xl font-bold mb-3 text-center"
-            value="Sign Up"
-          />
+        <div className="w-full flex flex-col mt-4 mb-2">
+          <p className="text-blue-900 text-xl font-bold mb-3 text-center">
+              Sign Up {UserIcon}
+            </p>
 
           <AllPurposeLabel
-            labelStyling="text-black mb-5 text-center"
+            labelStyling="text-blue-900 font-semibold  mb-5 text-center text-sm"
             value="Please Enter Your Sign-Up Details"
           />
         </div>
 
         <form className="w-full">
-          <AllPurposeLabel labelStyling="text-black" value="User Email" />
-          <AllPurposeInput
-            inputPlaceHolder="User Email"
-            inputType="text"
-            inputId="userEmail"
-          />
+          {/* <AllPurposeLabel labelStyling="text-black" value="User Name" /> */}
+          <AllPurposeInput inputPlaceHolder="User Name" value={userName} inputType="text" inputId="name" name="name" onchangeFunction={onchangeFunction}/>
 
-          <AllPurposeLabel labelStyling="text-black" value="Password" />
-          <AllPurposeInput
-            inputPlaceHolder="Password"
-            inputType="password"
-            inputId="userPassword"
-          />
+          {/* <AllPurposeLabel labelStyling="text-black" value="User Email" /> */}
+          <AllPurposeInput inputPlaceHolder="User Email" value={email} inputType="text" inputId="userEmail" name="userEmail" onchangeFunction={onchangeFunction}/>
+          
+          {/* <AllPurposeLabel labelStyling="text-black" value="Password" /> */}
+          <AllPurposeInput inputPlaceHolder="Password" value={password} inputType="text" inputId="userPassword" name="userPassword" onchangeFunction={onchangeFunction}/>
+
+          {/* <AllPurposeLabel labelStyling="text-black" value="Confirm Password" /> */}
+          <AllPurposeInput inputPlaceHolder="Confirm Password" value={confirmedPassword} inputType="text" inputId="confirmedUserPassword" name="confirmedUserPassword" onchangeFunction={onchangeFunction}/>
 
           <button
             type="submit"
-            onMouseEnter={() => setButtonHoverStatus(false)}
-            onMouseLeave={() => setButtonHoverStatus(true)}
             className={buttonStyling}
           >
             Sign Up
           </button>
         </form>
 
-        <div className={forgotPasswordHoverStyle}>
+        <div className={hoverUnderline}>
           <Link
             to="/login"
-            onMouseEnter={() => setForgotPasswordHoverStatus(false)}
-            onMouseLeave={() => setForgotPasswordHoverStatus(true)}
           >
             Have an Account Already? Log in
           </Link>

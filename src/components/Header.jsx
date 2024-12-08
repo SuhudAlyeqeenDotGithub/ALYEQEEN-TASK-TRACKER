@@ -12,7 +12,7 @@ function Header() {
     <header>
 
       <div className="flex justify-center mb-5 mt-5">
-        <ToDoLogo/>
+        <ToDoLogo />
       </div>
 
       <div className="pr-8">
