@@ -3,15 +3,18 @@ import AllPurposeLabel from "../components/AllPurposeLabel";
 import Logo from "../components/ToDoLogo";
 import AllPurposeInput from "../components/allPurposeInput";
 import { useState } from "react";
+import { Link } from "react-router-dom"
 
 const LoginPage = () => {
   // Background styling for the login page
   const loginBackground = `bg  bg-cover bg-center h-screen w-full flex justify-center items-center`;
   const [buttonHovered, setButtonHoverStatus] = useState(false);
   const [forgotPasswordHovered, setforgotPasswordHoverStatus] = useState(false);
+  const [signupHovered, setSignupHoverStatus] = useState(false);
 
   const buttonStyling = `text-white px-4 py-2 rounded w-full ${buttonHovered? "bg-blue-600" : "bg-blue-700"}`;
   const forgotPasswordHoverStyle = `mt-4 text-blue-600 text-center ${forgotPasswordHovered? "" : "underline"}`;
+  const signupHoverStyle = `mt-4 text-blue-600 text-center ${signupHovered? "" : "underline"}`;
   return (
     <div className={loginBackground}>
       <AllPurposeContainer containerStyling="bg-white p-8 rounded-xl border border-blue-300 shadow-lg max-w-md w-full flex flex-col justify-center  items-center min-h-[400px]">
@@ -43,12 +46,17 @@ const LoginPage = () => {
           </button>
         </form>
 
-        <div className={forgotPasswordHoverStyle}>
-          <a href="/forgot-password"
+        <div className="flex flex-col mt-3">
+          <Link to="/forgot-password" className={forgotPasswordHoverStyle}
           onMouseEnter={() => setforgotPasswordHoverStatus(false)}
           onMouseLeave={() => setforgotPasswordHoverStatus(true)}>
             Forgot Password?
-          </a>
+          </Link>
+          <Link to="/signup" className={signupHoverStyle}
+          onMouseEnter={() => setSignupHoverStatus(false)}
+          onMouseLeave={() => setSignupHoverStatus(true)}>
+            Have no Account? Register
+          </Link>
         </div>
         <br/>
         <p className="text-sm text-gray-400">@Suhud Ayodeji Yekini Innovation</p>

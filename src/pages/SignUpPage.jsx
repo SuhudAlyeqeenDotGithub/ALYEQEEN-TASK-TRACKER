@@ -3,6 +3,7 @@ import AllPurposeLabel from "../components/AllPurposeLabel";
 import Logo from "../components/ToDoLogo";
 import AllPurposeInput from "../components/allPurposeInput";
 import { useState } from "react";
+import { Link } from "react-router-dom"
 
 const SignUpPage = () => {
   // Background styling for the signup page
@@ -60,13 +61,13 @@ const SignUpPage = () => {
         </form>
 
         <div className={forgotPasswordHoverStyle}>
-          <a
-            href="/forgot-password"
+          <Link
+            to="/login"
             onMouseEnter={() => setForgotPasswordHoverStatus(false)}
             onMouseLeave={() => setForgotPasswordHoverStatus(true)}
           >
             Have an Account Already? Log in
-          </a>
+          </Link>
         </div>
         <br />
         <p className="text-sm text-gray-400">

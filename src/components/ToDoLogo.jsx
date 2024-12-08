@@ -1,4 +1,4 @@
-import Logo from '..//assets//ToDoAppLogo.png'
+import Logo from '../assets/ToDoAppLogo.png'
 
 const ToDoLogo = ({logoStyling}) => {
   return (
