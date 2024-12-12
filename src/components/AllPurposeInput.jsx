@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const AllPurposeInput = ({inputPlaceHolder, inputValue, inputType, inputId, inputName, onchangeFunction, styling}) => {
 
   // Class formatting based on focus state
