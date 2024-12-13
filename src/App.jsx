@@ -4,21 +4,24 @@ import TasksPage from "./pages/TasksPage";
 import DashboardPage from "./pages/DashboardPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
-      <Router>
-         <Routes>
-            <Route path="/" element={<Layout/>}>
-              <Route path="login" element={<LoginPage/>} />
-              <Route path="signup" element={<SignUpPage/>} />
-              <Route path="mytasks" element={<TasksPage/>} />
-              <Route path="dashboard" element={<DashboardPage/>} />
-            </Route>
-          </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/alyeqeenTaskTracker/" element={<Layout />}>
+          <Route path="mytasks" element={<TasksPage />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+        </Route>
+      </Routes>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
-  )
-}
-
-export default App
+export default App;

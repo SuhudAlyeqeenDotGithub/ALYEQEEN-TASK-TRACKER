@@ -3,22 +3,26 @@ import AllPurposeLabel from "../components/AllPurposeLabel";
 import Logo from "../components/ToDoLogo";
 import AllPurposeInput from "../components/allPurposeInput";
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const LoginPage = () => {
   // Background styling for the signup page
-  const [formData, setFormData] = useState({email:"", password:""});
-  const {email, password} = formData;
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { email, password } = formData;
 
   const onchangeFunction = (e) => {
-    setFormData((previousState) => ({...previousState, [e.target.name]: e.target.value}));
-  }
+    setFormData((previousState) => ({
+      ...previousState,
+      [e.target.name]: e.target.value,
+    }));
+  };
   const loginBackground = `bg  bg-cover bg-center h-screen w-full flex justify-center items-center`;
-  const LoginIcon = <FontAwesomeIcon icon={faSignInAlt} size="1x"/>
+  const LoginIcon = <FontAwesomeIcon icon={faSignInAlt} size="1x" />;
   const buttonStyling = `bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded w-full hover:bg-blue-600`;
-  const hoverUnderline = "text-sm mt-2 text-blue-700 text-center hover:underline"
+  const hoverUnderline =
+    "text-sm mt-2 text-blue-700 text-center hover:underline";
 
   return (
     <div className={loginBackground}>
@@ -27,8 +31,8 @@ const LoginPage = () => {
 
         <div className="w-full flex flex-col mt-4 mb-2">
           <p className="text-blue-900 text-xl font-bold mb-3 text-center">
-              Log In {LoginIcon}
-            </p>
+            Log In {LoginIcon}
+          </p>
 
           <AllPurposeLabel
             labelStyling="text-blue-900 font-semibold  mb-5 text-center text-sm"
@@ -38,31 +42,37 @@ const LoginPage = () => {
 
         <form className="w-full">
           {/* <AllPurposeLabel labelStyling="text-black" value="User Email" /> */}
-          <AllPurposeInput inputPlaceHolder="User Email" value={email} inputType="text" inputId="userEmail" name="userEmail" onchangeFunction={onchangeFunction}/>
-          
+          <AllPurposeInput
+            inputPlaceHolder="User Email"
+            value={email}
+            inputType="text"
+            inputId="userEmail"
+            name="userEmail"
+            onchangeFunction={onchangeFunction}
+          />
+
           {/* <AllPurposeLabel labelStyling="text-black" value="Password" /> */}
-          <AllPurposeInput inputPlaceHolder="Password" value={password} inputType="text" inputId="userPassword" name="userPassword" onchangeFunction={onchangeFunction}/>
+          <AllPurposeInput
+            inputPlaceHolder="Password"
+            value={password}
+            inputType="text"
+            inputId="userPassword"
+            name="userPassword"
+            onchangeFunction={onchangeFunction}
+          />
 
-
-          <button
-            type="submit"
-            className={buttonStyling}
-          >
-            Log In
-          </button>
+          <Link to="/alyeqeenTaskTracker">
+            <button type="submit" className={buttonStyling}>
+              Log In
+            </button>
+          </Link>
         </form>
 
         <div className="flex flex-col mt-3">
-          <Link
-            to="/forgotPassword"
-            className={hoverUnderline}
-          >
+          <Link to="/forgotPassword" className={hoverUnderline}>
             Forgot Password? Reset
           </Link>
-          <Link
-            to="/signup"
-            className={hoverUnderline}
-          >
+          <Link to="/signup" className={hoverUnderline}>
             Have no Account? Register
           </Link>
         </div>

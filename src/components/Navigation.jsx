@@ -13,12 +13,12 @@ function Navigation() {
             <nav>
                 <ul className="flex space-x-4 justify-center">
                     <li>
-                        <Link to="/mytasks"
-                        className={`${linkClass} ${isActivePage("/mytasks")}`}>My Tasks</Link>
+                        <Link to="/alyeqeenTaskTracker/mytasks"
+                        className={`${linkClass} ${isActivePage("/alyeqeenTaskTracker/mytasks")}`}>My Tasks</Link>
                     </li>
                     <li>
-                        <Link to="/dashboard"
-                        className={`${linkClass} ${isActivePage("/dashboard")}`}>Dashboard</Link>
+                        <Link to="/alyeqeenTaskTracker/dashboard"
+                        className={`${linkClass} ${isActivePage("/alyeqeenTaskTracker/dashboard")}`}>Dashboard</Link>
                     </li>
 
                 </ul>
