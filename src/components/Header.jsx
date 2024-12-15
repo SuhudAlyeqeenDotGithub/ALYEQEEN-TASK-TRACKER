@@ -9,7 +9,7 @@ function Header() {
   const linkClass = "hover:bg-[#448ABC] p-2 rounded-md hover:text-white"
   
   return (
-    <header>
+    <header className="sticky top-0 bg-white pb-8">
 
       <div className="flex justify-center mb-5 mt-5">
         <ToDoLogo />
@@ -26,7 +26,7 @@ function Header() {
                   
       </div>
 
-        <Navigation/>
+        <Navigation />
     </header>
   )
 }

@@ -5,12 +5,13 @@ import DashboardPage from "./pages/DashboardPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import LandingPage from "./pages/LandingPage";
+import NewTaskProvider from "./contexts/newTaskContext";
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/alyeqeenTaskTracker/" element={<Layout />}>
+        <Route path="/alyeqeenTaskTracker" element={<Layout />}>
           <Route path="mytasks" element={<TasksPage />} />
           <Route path="dashboard" element={<DashboardPage />} />
         </Route>

@@ -12,7 +12,7 @@ const AllPurposeInput = ({inputPlaceHolder, inputValue, inputType, inputId, inpu
       id={inputId}
       value={inputValue}
       name={inputName}
-      onchange={onchangeFunction}
+      onChange={onchangeFunction}
     />
   );
 };

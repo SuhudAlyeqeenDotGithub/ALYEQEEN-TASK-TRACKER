@@ -6,4 +6,4 @@ const AllPurposeContainer = ({containerStyling, children}) => {
   )
 }
 
-export default AllPurposeContainer
+export default AllPurposeContainer;
