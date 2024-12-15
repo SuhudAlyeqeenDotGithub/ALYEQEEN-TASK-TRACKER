@@ -20,13 +20,13 @@ const LoginPage = () => {
   };
   const loginBackground = `bg  bg-cover bg-center h-screen w-full flex justify-center items-center`;
   const LoginIcon = <FontAwesomeIcon icon={faSignInAlt} size="1x" />;
-  const buttonStyling = `bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded w-full hover:bg-blue-600`;
+  const buttonStyling = `bg-blue-800 text-white text-sm font-semibold px-4 py-2 rounded w-full hover:bg-blue-900`;
   const hoverUnderline =
-    "text-sm mt-2 text-blue-700 text-center hover:underline";
+    "text-sm mt-2 text-blue-800 text-center font-semibold hover:underline";
 
   return (
     <div className={loginBackground}>
-      <AllPurposeContainer containerStyling="bg-white p-8 rounded-xl border border-blue-300 shadow-lg max-w-md w-full flex flex-col justify-center  items-center min-h-[400px]">
+      <AllPurposeContainer containerStyling="bg-white p-8 rounded-xl border border-blue-800 shadow-lg max-w-md w-full flex flex-col justify-center  items-center min-h-[400px]">
         <Logo logoStyling="w-30 h-28" />
 
         <div className="w-full flex flex-col mt-4 mb-2">
@@ -45,7 +45,7 @@ const LoginPage = () => {
           <AllPurposeInput
             inputPlaceHolder="User Email"
             value={email}
-            inputType="text"
+            inputType="email"
             inputId="userEmail"
             name="userEmail"
             onchangeFunction={onchangeFunction}
@@ -55,7 +55,7 @@ const LoginPage = () => {
           <AllPurposeInput
             inputPlaceHolder="Password"
             value={password}
-            inputType="text"
+            inputType="password"
             inputId="userPassword"
             name="userPassword"
             onchangeFunction={onchangeFunction}

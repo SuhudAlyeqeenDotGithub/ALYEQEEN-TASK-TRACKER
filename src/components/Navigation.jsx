@@ -5,9 +5,9 @@ import { useLocation } from "react-router-dom";
 function Navigation() {
 
     const location = useLocation();
-    const isActivePage = (path) => location.pathname === path && "border-b-4 border-[#295270]"
+    const isActivePage = (path) => location.pathname === path && "border-b-4 border-blue-900"
 
-    const linkClass = "hover:bg-[#448ABC] p-2 rounded-md hover:text-white hover:border-none"
+    const linkClass = "hover:bg-blue-800 text-blue-900 font-semibold p-2 rounded-md hover:text-white hover:border-none"
    
   return (
             <nav>

@@ -25,9 +25,9 @@ const SignUpPage = () => {
   };
   const signUpBackground = `bg  bg-cover bg-center h-screen w-full flex justify-center items-center`;
   const UserIcon = <FontAwesomeIcon icon={faUserAlt} size="1x" />;
-  const buttonStyling = `bg-blue-700 text-white text-sm font-semibold px-4 py-2 rounded w-full hover:bg-blue-600`;
+  const buttonStyling = `bg-blue-800 text-white text-sm font-semibold px-4 py-2 rounded w-full hover:bg-blue-900`;
   const hoverUnderline =
-    "text-sm mt-4 text-blue-700 text-center hover:underline";
+    "text-sm mt-4 text-blue-900 text-center font-semibold hover:underline";
 
   return (
     <div className={signUpBackground}>
@@ -60,7 +60,7 @@ const SignUpPage = () => {
           <AllPurposeInput
             inputPlaceHolder="User Email"
             value={email}
-            inputType="text"
+            inputType="email"
             inputId="userEmail"
             name="userEmail"
             onchangeFunction={onchangeFunction}
@@ -70,7 +70,7 @@ const SignUpPage = () => {
           <AllPurposeInput
             inputPlaceHolder="Password"
             value={password}
-            inputType="text"
+            inputType="password"
             inputId="userPassword"
             name="userPassword"
             onchangeFunction={onchangeFunction}
@@ -80,7 +80,7 @@ const SignUpPage = () => {
           <AllPurposeInput
             inputPlaceHolder="Confirm Password"
             value={confirmedPassword}
-            inputType="text"
+            inputType="password"
             inputId="confirmedUserPassword"
             name="confirmedUserPassword"
             onchangeFunction={onchangeFunction}

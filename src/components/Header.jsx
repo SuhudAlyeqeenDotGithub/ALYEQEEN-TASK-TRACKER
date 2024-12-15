@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 function Header() {
 
-  const linkClass = "hover:bg-[#448ABC] p-2 rounded-md hover:text-white"
+  const linkClass = "text-blue-900 font-semibold hover:bg-blue-800 p-2 rounded-md hover:text-white"
   
   return (
     <header className="sticky top-0 bg-white pb-8">
