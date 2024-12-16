@@ -5,7 +5,7 @@ import { enableScroll } from "../UtilityFunctions/UtilityFunctions";
 import { NewTaskContext } from "../contexts/TaskContext";
 import AllPurposeLabel from "./AllPurposeLabel";
 
-export const NewTaskDialog = ({ dialogTitle }) => {
+export const NewTaskDialog = () => {
   const { NewTaskdialogIsOpen, setNewTaskDialogIsOpen } =
     useContext(NewTaskContext);
 
@@ -55,7 +55,7 @@ export const NewTaskDialog = ({ dialogTitle }) => {
         <div className={overlayStyling}> </div>
         <AllPurposeContainer containerStyling={dialogueStyling}>
           <h1 className="text-blue-900 text-2xl mb-4 font-bold">
-            {dialogTitle}
+          New Task
           </h1>
           <h1 className="text-blue-900 mb-2 font-semibold">Task Id:</h1>
           <AllPurposeInput

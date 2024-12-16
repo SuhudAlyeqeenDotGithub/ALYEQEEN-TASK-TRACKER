@@ -1,6 +1,6 @@
 const AllPurposeContainer = ({containerStyling, children}) => {
   return (
-    <div className={containerStyling}>
+    <div className={`border-blue-800 ${containerStyling}`}>
      {children}
     </div>
   )
