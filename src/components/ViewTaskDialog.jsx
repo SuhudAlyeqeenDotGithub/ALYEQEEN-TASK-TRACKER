@@ -1,14 +1,22 @@
 import React from "react";
 import { useContext } from "react";
 import AllPurposeContainer from "./AllPurposeContainer";
-import { enableScroll } from "../UtilityFunctions/UtilityFunctions";
+import {
+  disableScroll,
+  enableScroll,
+} from "../UtilityFunctions/UtilityFunctions";
 import { TaskDialogContext } from "../contexts/TaskContext";
 import { editIcon, deleteIcon, closeIcon } from "./icons";
 import { RegularParagraph, TaskStatusChip } from "./ShortComponents";
+import EditTaskDialog from "./EditTaskDialog";
 
 const ViewTaskDialog = ({ taskData }) => {
-  const { viewTaskDialogIsOpen, setViewTaskDialogIsOpen } =
-    useContext(TaskDialogContext);
+  const {
+    viewTaskDialogIsOpen,
+    setViewTaskDialogIsOpen,
+    editTaskDialogIsOpen,
+    setEditTaskDialogIsOpen,
+  } = useContext(TaskDialogContext);
 
   const {
     taskId,
@@ -29,9 +37,11 @@ const ViewTaskDialog = ({ taskData }) => {
   };
 
   const handleEditTaskFromView = () => {
-    if (viewTaskDialogIsOpen === true) {
+    if (editTaskDialogIsOpen === false) {
+      setEditTaskDialogIsOpen(true);
       setViewTaskDialogIsOpen(false);
-      enableScroll();
+      
+      disableScroll();
     }
   };
 
@@ -45,6 +55,7 @@ const ViewTaskDialog = ({ taskData }) => {
   return (
     viewTaskDialogIsOpen && (
       <>
+        {editTaskDialogIsOpen && <EditTaskDialog taskData={taskData}/>}
         <div className={overlayStyling} onClick={handleCloseViewTask}></div>
         <AllPurposeContainer containerStyling={dialogueStyling}>
           <div className="flex flex-col gap-8">

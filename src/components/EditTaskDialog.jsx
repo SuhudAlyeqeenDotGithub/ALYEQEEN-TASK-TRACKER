@@ -10,9 +10,6 @@ const EditTaskDialog = ({ taskData }) => {
   const { editTaskDialogIsOpen, setEditTaskDialogIsOpen } =
     useContext(TaskDialogContext);
 
-    console.log(taskData)
-
-
   const [formData, setFormData] = useState(taskData);
 
   const {

@@ -3,10 +3,9 @@ import { editIcon, deleteIcon, addIcon } from "../components/icons";
 import { useContext, useEffect, useState } from "react";
 import NewTaskDialog from "../components/NewTaskDialog";
 import ViewTaskDialog from "../components/ViewTaskDialog";
-import EditTaskDialog  from "../components/EditTaskDialog";
+import EditTaskDialog from "../components/EditTaskDialog";
 import { TaskDialogContext } from "../contexts/TaskContext";
 import { disableScroll } from "../UtilityFunctions/UtilityFunctions";
-
 
 function TasksPage() {
   const taskContainerStyle =
@@ -61,10 +60,6 @@ function TasksPage() {
     );
   };
 
-  
-  
-
-
   const [viewTaskData, setViewTaskData] = useState({});
   const [editaskData, setEditTaskData] = useState({});
 
@@ -79,8 +74,7 @@ function TasksPage() {
   const showEditTaskDialog = (event, taskData) => {
     event.stopPropagation();
     if (editTaskDialogIsOpen === false) {
-      setEditTaskData(taskData)
-      console.log(taskData)
+      setEditTaskData(taskData);
       setEditTaskDialogIsOpen(true);
       disableScroll();
     }
@@ -92,7 +86,6 @@ function TasksPage() {
       disableScroll();
     }
   };
-
 
   const tasks = tasksData.map((obj, index) => {
     const { taskName, taskStartDate, taskStartTime, taskStatus } = obj;
@@ -147,8 +140,6 @@ function TasksPage() {
   const deleteButtonStyle = `${regularButtonStyle} ${deleteButtonShowLogic}`;
   const editButtonStyle = `${regularButtonStyle} ${topEditButtonLogic}`;
 
-
-
   useEffect(() => {
     const checkedBoxes = regularCheckBoxStatus.filter(
       (status) => status === true
@@ -159,7 +150,7 @@ function TasksPage() {
   return (
     <div className="">
       {newTaskDialogIsOpen && <NewTaskDialog />}
-      {editTaskDialogIsOpen && <EditTaskDialog taskData={editaskData}/>}
+      {editTaskDialogIsOpen && <EditTaskDialog taskData={editaskData} />}
       {viewTaskDialogIsOpen && <ViewTaskDialog taskData={viewTaskData} />}
       <div className=" sticky top-52 bg-white shadow-sm border border-blue-800  p-4 rounded flex flex-wrap items-center w-4/5 justify-self-center">
         <div className="row-span-2 flex ml-10 items-center justify-self-center">
