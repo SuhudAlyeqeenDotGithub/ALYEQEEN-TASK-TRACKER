@@ -1,12 +1,9 @@
-import Logo from '../assets/ToDoAppLogo.png'
+import Logo from "../assets/ToDoAppLogo.png";
 
-const ToDoLogo = ({logoStyling}) => {
+const ToDoLogo = ({ logoStyling }) => {
   return (
-    <img src={Logo}
-        alt="Al-Yeqeen Tast Tracker Logo"
-        className={logoStyling}
-    />
-  )
-}
+    <img src={Logo} alt="Al-Yeqeen Tast Tracker Logo" className={logoStyling} />
+  );
+};
 
-export default ToDoLogo
+export default ToDoLogo;

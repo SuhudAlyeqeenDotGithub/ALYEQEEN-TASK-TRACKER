@@ -137,10 +137,8 @@ function TasksPage() {
 
   return (
     <div className="">
-      {NewTaskdialogIsOpen && <NewTaskDialog/>}
-      {ViewTaskdialogIsOpen && (
-        <ViewTaskDialog taskData={viewTaskData} />
-      )}
+      {NewTaskdialogIsOpen && <NewTaskDialog />}
+      {ViewTaskdialogIsOpen && <ViewTaskDialog taskData={viewTaskData} />}
       <div className=" sticky top-52 bg-white shadow-sm border border-blue-800  p-4 rounded flex flex-wrap items-center w-4/5 justify-self-center">
         <div className="row-span-2 flex ml-10 items-center justify-self-center">
           <AllPurposeCheckBox

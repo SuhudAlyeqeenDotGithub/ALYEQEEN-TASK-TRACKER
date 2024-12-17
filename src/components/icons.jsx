@@ -8,6 +8,6 @@ import {
 
 const editIcon = <FontAwesomeIcon icon={faEdit} />;
 const deleteIcon = <FontAwesomeIcon icon={faTrashAlt} />;
-const addIcon = <FontAwesomeIcon  icon={faAdd} />;
-const closeIcon = <FontAwesomeIcon  icon={faClose} />;
+const addIcon = <FontAwesomeIcon icon={faAdd} />;
+const closeIcon = <FontAwesomeIcon icon={faClose} />;
 export { editIcon, deleteIcon, addIcon, closeIcon };
