@@ -1,11 +1,7 @@
-import { NewTaskProvider, ViewTaskProvider } from "./TaskContext";
+import { TaskDialogProvider } from "./TaskContext";
 
 const AppContextProviders = ({ children }) => {
-  return (
-    <NewTaskProvider>
-      <ViewTaskProvider>{children}</ViewTaskProvider>
-    </NewTaskProvider>
-  );
+  return <TaskDialogProvider>{children}</TaskDialogProvider>;
 };
 
 export default AppContextProviders;

@@ -1,27 +1,25 @@
 import { createContext, useState } from "react";
 
-// Create context
-export const NewTaskContext = createContext({});
+// Single context for managing task dialogs
+export const TaskDialogContext = createContext({});
 
-export const NewTaskProvider = ({ children }) => {
-  // State to manage dialog visibility
-  const [NewTaskdialogIsOpen, setNewTaskDialogIsOpen] = useState(false);
-
-  return (
-    <NewTaskContext.Provider value={{ NewTaskdialogIsOpen, setNewTaskDialogIsOpen }}>
-      {children}
-    </NewTaskContext.Provider>
-  );
-};
-
-export const ViewTaskContext = createContext({})
-export const ViewTaskProvider = ({ children }) => {
-  // State to manage dialog visibility
-  const [ViewTaskdialogIsOpen, setViewTaskDialogIsOpen] = useState(false);
+export const TaskDialogProvider = ({ children }) => {
+  const [newTaskDialogIsOpen, setNewTaskDialogIsOpen] = useState(false);
+  const [viewTaskDialogIsOpen, setViewTaskDialogIsOpen] = useState(false);
+  const [editTaskDialogIsOpen, setEditTaskDialogIsOpen] = useState(false);
 
   return (
-    <ViewTaskContext.Provider value={{ ViewTaskdialogIsOpen, setViewTaskDialogIsOpen }}>
+    <TaskDialogContext.Provider
+      value={{
+        newTaskDialogIsOpen,
+        setNewTaskDialogIsOpen,
+        viewTaskDialogIsOpen,
+        setViewTaskDialogIsOpen,
+        editTaskDialogIsOpen,
+        setEditTaskDialogIsOpen,
+      }}
+    >
       {children}
-    </ViewTaskContext.Provider>
+    </TaskDialogContext.Provider>
   );
 };

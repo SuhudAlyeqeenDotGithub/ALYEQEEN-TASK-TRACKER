@@ -6,21 +6,17 @@ import { TaskDialogContext } from "../contexts/TaskContext";
 import AllPurposeLabel from "./AllPurposeLabel";
 import { closeIcon } from "./icons";
 
-const NewTaskDialog = () => {
-  const { newTaskDialogIsOpen, setNewTaskDialogIsOpen } =
+const EditTaskDialog = ({ taskData }) => {
+  const { editTaskDialogIsOpen, setEditTaskDialogIsOpen } =
     useContext(TaskDialogContext);
 
-  const [formData, setFormData] = useState({
-    taskName: "",
-    taskDescription: "",
-    taskStartDate: "",
-    taskDueDate: "",
-    taskStartTime: "",
-    taskDueTime: "",
-    taskStatus: "",
-  });
+    console.log(taskData)
+
+
+  const [formData, setFormData] = useState(taskData);
 
   const {
+    taskId,
     taskName,
     taskDescription,
     taskStartDate,
@@ -38,8 +34,8 @@ const NewTaskDialog = () => {
   };
 
   const closeDialog = () => {
-    if (newTaskDialogIsOpen === true) {
-      setNewTaskDialogIsOpen(false);
+    if (editTaskDialogIsOpen === true) {
+      setEditTaskDialogIsOpen(false);
       enableScroll();
     }
   };
@@ -53,13 +49,13 @@ const NewTaskDialog = () => {
   const dateTimeDivStyling = "grid grid-cols-2 grid-rows-1 gap-6 min-w-full";
   const closeButtonStyling = `justify-self-end text-blue-900 hover:text-white text-xl p-2 rounded-lg`;
   return (
-    newTaskDialogIsOpen && (
+    editTaskDialogIsOpen && (
       <div>
         <div className={overlayStyling}> </div>
         <AllPurposeContainer containerStyling={dialogueStyling}>
           <header className="w-full flex flex-row mb-4">
             <h1 className="w-full pt-2 text-blue-900 text-2xl font-bold">
-              New Task
+              Edit Task
             </h1>
             <button
               className={`hover:bg-red-500 ${closeButtonStyling}`}
@@ -69,7 +65,7 @@ const NewTaskDialog = () => {
             </button>
           </header>
           <div className="text-blue-900 mb-2 w-full font-semibold">
-            Task Id:
+            Task Id: {taskId}
           </div>
 
           <AllPurposeInput
@@ -161,11 +157,12 @@ const NewTaskDialog = () => {
           </select>
 
           <button className={buttonStyling} onClick={closeDialog}>
-            Add Task
+            Save Task
           </button>
         </AllPurposeContainer>
       </div>
     )
   );
 };
-export default NewTaskDialog;
+
+export default EditTaskDialog;
