@@ -87,7 +87,7 @@ const ViewTaskDialog = ({ taskData }) => {
                   >
                     {editIcon}
                   </button>
-                  <button
+                  <button title="close"
                     className={`hover:bg-red-500 ${buttonStyling}`}
                     onClick={handleCloseViewTask}
                   >

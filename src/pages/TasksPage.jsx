@@ -38,11 +38,11 @@ function TasksPage() {
     editTaskDialogIsOpen,
     setEditTaskDialogIsOpen,
     editTaskDialogFromViewIsOpen,
-        setEditDialogTaskFromViewIsOpen,
-        viewTaskDataToEdit, setViewTaskDataToEdit
+    setEditDialogTaskFromViewIsOpen,
+    viewTaskDataToEdit,
+    setViewTaskDataToEdit,
   } = useContext(TaskDialogContext);
 
-  
   const oneOrMoreRegBoxIsTrue = regularCheckBoxStatus.some(
     (checkStatus) => checkStatus === true
   );
@@ -88,6 +88,18 @@ function TasksPage() {
     if (newTaskDialogIsOpen === false) {
       setNewTaskDialogIsOpen(true);
       disableScroll();
+    }
+  };
+
+  const handleEditTaskFromNavButton = () => {
+    if (onlyOneCheckIsTrue) {
+      const taskToEdit = regularCheckBoxStatus.indexOf(true);
+      setEditTaskData(
+        tasksData.find((taskData) => {
+          return taskData.taskId === taskToEdit;
+        })
+      );
+      setEditTaskDialogIsOpen(true);
     }
   };
 
@@ -151,14 +163,13 @@ function TasksPage() {
     setCountCheckedBoxes(checkedBoxes);
   }, [regularCheckBoxStatus]);
 
-  
-
   return (
     <div className="">
       {newTaskDialogIsOpen && <NewTaskDialog />}
       {editTaskDialogIsOpen && <EditTaskDialog taskData={editTaskData} />}
-      {editTaskDialogFromViewIsOpen && <EditTaskDialog taskData={viewTaskDataToEdit} />}
-      
+      {editTaskDialogFromViewIsOpen && (
+        <EditTaskDialog taskData={viewTaskDataToEdit} />
+      )}
       {viewTaskDialogIsOpen && <ViewTaskDialog taskData={viewTaskData} />}
       <div className=" sticky top-52 bg-white shadow-sm border border-blue-800  p-4 rounded flex flex-wrap items-center w-4/5 justify-self-center">
         <div className="row-span-2 flex ml-10 items-center justify-self-center">
@@ -185,7 +196,7 @@ function TasksPage() {
           <button
             title="edit"
             className={editButtonStyle}
-            onClick={showEditTaskDialog}
+            onClick={handleEditTaskFromNavButton}
           >
             Edit {editIcon}
           </button>
