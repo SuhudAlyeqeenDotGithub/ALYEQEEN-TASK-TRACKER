@@ -7,8 +7,15 @@ import AllPurposeLabel from "./AllPurposeLabel";
 import { closeIcon } from "./icons";
 
 const EditTaskDialog = ({ taskData }) => {
-  const { editTaskDialogIsOpen, setEditTaskDialogIsOpen } =
+  const {
+    editTaskDialogIsOpen,
+    setEditTaskDialogIsOpen,
+    editTaskDialogFromViewIsOpen,
+    setEditDialogTaskFromViewIsOpen,
+   } =
     useContext(TaskDialogContext);
+
+    
 
   const [formData, setFormData] = useState(taskData);
 
@@ -23,6 +30,7 @@ const EditTaskDialog = ({ taskData }) => {
     taskStatus,
   } = formData;
 
+
   const handleFormData = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -31,13 +39,16 @@ const EditTaskDialog = ({ taskData }) => {
   };
 
   const closeDialog = () => {
-    if (editTaskDialogIsOpen === true) {
+    if (editTaskDialogIsOpen) {
       setEditTaskDialogIsOpen(false);
+      enableScroll();
+    } else if(editTaskDialogFromViewIsOpen){
+      setEditDialogTaskFromViewIsOpen(false);
       enableScroll();
     }
   };
 
-  const scrollBarStyling = `overflow-auto scrollbar scrollbar-thumb-white scrollbar-track-blue-900`;
+const scrollBarStyling = `overflow-auto scrollbar scrollbar-thumb-white scrollbar-track-blue-900`;
   const dialogueStyling = `${scrollBarStyling}  bg-white z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pl-8 pr-8 pb-8 pt-2 rounded-xl border border-blue-300 shadow-lg max-w-md w-full flex flex-wrap justify-center items-center h-full min-h-[200px] max-h-[700px] gap-1`;
   const overlayStyling = `fixed bg-blue-100 bg-opacity-90 inset-0 border z-10 flex justify-center items-center`;
   const textAreaStyling = `shadow-sm border border-blue-800 placeholder-blue-900 text-blue-900 text-sm font-semibold border border-blue-500 w-full p-2 rounded mb-4 mt-2 focus:border-2 border-blue-500 outline-none`;
@@ -45,16 +56,15 @@ const EditTaskDialog = ({ taskData }) => {
   const optionStyling = `font-semibold hover:bg-blue-900`;
   const dateTimeDivStyling = "grid grid-cols-2 grid-rows-1 gap-6 min-w-full";
   const closeButtonStyling = `justify-self-end text-blue-900 hover:text-white text-xl p-2 rounded-lg`;
-  return (
-    editTaskDialogIsOpen && (
-      <div>
+
+  const whatToRender = (<div>
         <div className={overlayStyling}> </div>
         <AllPurposeContainer containerStyling={dialogueStyling}>
           <header className="w-full flex flex-row mb-4">
             <h1 className="w-full pt-2 text-blue-900 text-2xl font-bold">
               Edit Task
             </h1>
-            <button
+            <button title="close"
               className={`hover:bg-red-500 ${closeButtonStyling}`}
               onClick={closeDialog}
             >
@@ -157,9 +167,13 @@ const EditTaskDialog = ({ taskData }) => {
             Save Task
           </button>
         </AllPurposeContainer>
-      </div>
-    )
+      </div>)
+
+  
+  return (
+    (editTaskDialogIsOpen || editTaskDialogFromViewIsOpen) &&  whatToRender
   );
+
 };
 
 export default EditTaskDialog;

@@ -7,6 +7,9 @@ export const TaskDialogProvider = ({ children }) => {
   const [newTaskDialogIsOpen, setNewTaskDialogIsOpen] = useState(false);
   const [viewTaskDialogIsOpen, setViewTaskDialogIsOpen] = useState(false);
   const [editTaskDialogIsOpen, setEditTaskDialogIsOpen] = useState(false);
+  const [editTaskDialogFromViewIsOpen, setEditDialogTaskFromViewIsOpen] =
+    useState(false);
+  const [viewTaskDataToEdit, setViewTaskDataToEdit] = useState({});
 
   return (
     <TaskDialogContext.Provider
@@ -17,6 +20,9 @@ export const TaskDialogProvider = ({ children }) => {
         setViewTaskDialogIsOpen,
         editTaskDialogIsOpen,
         setEditTaskDialogIsOpen,
+        editTaskDialogFromViewIsOpen,
+        setEditDialogTaskFromViewIsOpen,
+        viewTaskDataToEdit, setViewTaskDataToEdit
       }}
     >
       {children}

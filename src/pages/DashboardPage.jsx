@@ -1,13 +1,12 @@
 import BarChart from "./chart";
 
 function DashboardPage() {
-
-  const dashboardEntityStyle = "border border-[#448ABC] shadow-md p-2 rounded-md bg-white flex flex-col items-center justify-center"
+  const dashboardEntityStyle =
+    "border border-[#448ABC] shadow-md p-2 rounded-md bg-white flex flex-col items-center justify-center";
   const elements = [];
-  for(let i = 0; i < 20; i++){
+  for (let i = 0; i < 20; i++) {
     elements.push(<h1>Pie Chart{i}</h1>);
   }
-
 
   return (
     <div className="p-8 mt-10 grid grid-cols-3 grid-rows-2 gap-4">
@@ -18,8 +17,8 @@ function DashboardPage() {
       </div>
 
       <div className={`row-span-2 ${dashboardEntityStyle}`}>
-      <BarChart/>
-      <BarChart/>
+        <BarChart />
+        <BarChart />
       </div>
 
       <div className={dashboardEntityStyle}>
@@ -39,7 +38,7 @@ function DashboardPage() {
         <h1>Percentage Deleted:#</h1>
       </div>
     </div>
-  )
+  );
 }
 
-export default DashboardPage
+export default DashboardPage;

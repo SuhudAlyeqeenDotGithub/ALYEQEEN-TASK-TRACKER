@@ -37,8 +37,12 @@ function TasksPage() {
     setViewTaskDialogIsOpen,
     editTaskDialogIsOpen,
     setEditTaskDialogIsOpen,
+    editTaskDialogFromViewIsOpen,
+        setEditDialogTaskFromViewIsOpen,
+        viewTaskDataToEdit, setViewTaskDataToEdit
   } = useContext(TaskDialogContext);
 
+  
   const oneOrMoreRegBoxIsTrue = regularCheckBoxStatus.some(
     (checkStatus) => checkStatus === true
   );
@@ -61,7 +65,7 @@ function TasksPage() {
   };
 
   const [viewTaskData, setViewTaskData] = useState({});
-  const [editaskData, setEditTaskData] = useState({});
+  const [editTaskData, setEditTaskData] = useState({});
 
   const showViewTaskDialog = (taskData) => {
     if (viewTaskDialogIsOpen === false) {
@@ -71,10 +75,10 @@ function TasksPage() {
     }
   };
 
-  const showEditTaskDialog = (event, taskData) => {
+  const showEditTaskDialog = (event, taskObj) => {
     event.stopPropagation();
     if (editTaskDialogIsOpen === false) {
-      setEditTaskData(taskData);
+      setEditTaskData(taskObj);
       setEditTaskDialogIsOpen(true);
       disableScroll();
     }
@@ -87,13 +91,13 @@ function TasksPage() {
     }
   };
 
-  const tasks = tasksData.map((obj, index) => {
-    const { taskName, taskStartDate, taskStartTime, taskStatus } = obj;
+  const tasks = tasksData.map((taskObj, index) => {
+    const { taskName, taskStartDate, taskStartTime, taskStatus } = taskObj;
     return (
       <div
         key={index}
         onClick={() => {
-          showViewTaskDialog(obj);
+          showViewTaskDialog(taskObj);
         }}
         className={taskContainerStyle}
       >
@@ -127,7 +131,7 @@ function TasksPage() {
         <button
           title="edit"
           className="ml-4 hover:text-white hover:bg-blue-900 text-xl p-2 rounded-lg justify-center items-center"
-          onClick={(event) => showEditTaskDialog(event, obj)}
+          onClick={(event) => showEditTaskDialog(event, taskObj)}
         >
           {editIcon}
         </button>
@@ -147,10 +151,14 @@ function TasksPage() {
     setCountCheckedBoxes(checkedBoxes);
   }, [regularCheckBoxStatus]);
 
+  
+
   return (
     <div className="">
       {newTaskDialogIsOpen && <NewTaskDialog />}
-      {editTaskDialogIsOpen && <EditTaskDialog taskData={editaskData} />}
+      {editTaskDialogIsOpen && <EditTaskDialog taskData={editTaskData} />}
+      {editTaskDialogFromViewIsOpen && <EditTaskDialog taskData={viewTaskDataToEdit} />}
+      
       {viewTaskDialogIsOpen && <ViewTaskDialog taskData={viewTaskData} />}
       <div className=" sticky top-52 bg-white shadow-sm border border-blue-800  p-4 rounded flex flex-wrap items-center w-4/5 justify-self-center">
         <div className="row-span-2 flex ml-10 items-center justify-self-center">

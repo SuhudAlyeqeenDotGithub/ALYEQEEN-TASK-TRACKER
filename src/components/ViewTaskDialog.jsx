@@ -16,6 +16,9 @@ const ViewTaskDialog = ({ taskData }) => {
     setViewTaskDialogIsOpen,
     editTaskDialogIsOpen,
     setEditTaskDialogIsOpen,
+    editTaskDialogFromViewIsOpen,
+        setEditDialogTaskFromViewIsOpen,
+        viewTaskDataToEdit, setViewTaskDataToEdit
   } = useContext(TaskDialogContext);
 
   const {
@@ -38,10 +41,10 @@ const ViewTaskDialog = ({ taskData }) => {
 
   const handleEditTaskFromView = () => {
     if (editTaskDialogIsOpen === false) {
-      setEditTaskDialogIsOpen(true);
+      setViewTaskDataToEdit(taskData);
+      setEditDialogTaskFromViewIsOpen(true);
       setViewTaskDialogIsOpen(false);
-      
-      disableScroll();
+
     }
   };
 
@@ -55,7 +58,7 @@ const ViewTaskDialog = ({ taskData }) => {
   return (
     viewTaskDialogIsOpen && (
       <>
-        {editTaskDialogIsOpen && <EditTaskDialog taskData={taskData}/>}
+        {editTaskDialogIsOpen && <EditTaskDialog taskData={taskData} />}
         <div className={overlayStyling} onClick={handleCloseViewTask}></div>
         <AllPurposeContainer containerStyling={dialogueStyling}>
           <div className="flex flex-col gap-8">
@@ -71,7 +74,7 @@ const ViewTaskDialog = ({ taskData }) => {
                     className={`hover:bg-blue-900 ${buttonStyling}`}
                     onClick={() => {
                       alert(
-                        `Hey this is not real but you have just deleted the task1 ${taskId}`
+                        `Hey this is not real but you have just deleted the task1 ${taskId}`,
                       );
                     }}
                   >
