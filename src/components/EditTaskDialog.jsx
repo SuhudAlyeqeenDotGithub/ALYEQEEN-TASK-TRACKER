@@ -41,8 +41,6 @@ const EditTaskDialog = ({ taskData }) => {
   const closeDialog = () => {
     if (editTaskDialogIsOpen) {
       setEditTaskDialogIsOpen(false);
-      enableScroll();
-    } else if(editTaskDialogFromViewIsOpen){
       setEditDialogTaskFromViewIsOpen(false);
       enableScroll();
     }
@@ -171,7 +169,7 @@ const scrollBarStyling = `overflow-auto scrollbar scrollbar-thumb-white scrollba
 
   
   return (
-    (editTaskDialogIsOpen || editTaskDialogFromViewIsOpen) &&  whatToRender
+    (editTaskDialogIsOpen ) &&  whatToRender
   );
 
 };

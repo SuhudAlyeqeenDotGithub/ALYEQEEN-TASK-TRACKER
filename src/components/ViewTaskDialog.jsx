@@ -42,6 +42,7 @@ const ViewTaskDialog = ({ taskData }) => {
   const handleEditTaskFromView = () => {
     if (editTaskDialogIsOpen === false) {
       setViewTaskDataToEdit(taskData);
+      setEditTaskDialogIsOpen(true);
       setEditDialogTaskFromViewIsOpen(true);
       setViewTaskDialogIsOpen(false);
 

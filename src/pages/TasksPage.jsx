@@ -6,6 +6,7 @@ import ViewTaskDialog from "../components/ViewTaskDialog";
 import EditTaskDialog from "../components/EditTaskDialog";
 import { TaskDialogContext } from "../contexts/TaskContext";
 import { disableScroll } from "../UtilityFunctions/UtilityFunctions";
+import DeleteTaskDialog from "../components/deleteTaskDialog";
 
 function TasksPage() {
   const taskContainerStyle =
@@ -41,6 +42,8 @@ function TasksPage() {
     setEditDialogTaskFromViewIsOpen,
     viewTaskDataToEdit,
     setViewTaskDataToEdit,
+    deleteTaskDialogIsOpen, setDeleteTaskDialogIsOpen,
+    confirmedDeleteTask, setConfirmedDeleteTask
   } = useContext(TaskDialogContext);
 
   const oneOrMoreRegBoxIsTrue = regularCheckBoxStatus.some(
@@ -102,6 +105,32 @@ function TasksPage() {
       setEditTaskDialogIsOpen(true);
     }
   };
+
+  const [tasksToDelete, setTasksToDelete] = useState([]);
+
+  const handleDeleteFromNav = () => {
+    if (oneOrMoreRegBoxIsTrue) {
+      const tasksToDeleteLookUp = regularCheckBoxStatus
+        .map((checkedBox, index) => {
+          if (checkedBox === true) {
+            const foundTask = tasksData.find((task) => task.taskId === index);
+  
+            if (foundTask) {
+              return `Task Id: ${index} || Task Name: ${foundTask.taskName}`;
+            } else {
+              return null; // Return null if the task isn't found
+            }
+          }
+          return null; // Return null for unchecked checkboxes
+        })
+        .filter((task) => task !== null); // Remove null values from the array
+  
+      setTasksToDelete(tasksToDeleteLookUp);
+      setDeleteTaskDialogIsOpen(true);
+      disableScroll();
+    }
+  };
+  
 
   const tasks = tasksData.map((taskObj, index) => {
     const { taskName, taskStartDate, taskStartTime, taskStatus } = taskObj;
@@ -166,11 +195,9 @@ function TasksPage() {
   return (
     <div className="">
       {newTaskDialogIsOpen && <NewTaskDialog />}
-      {editTaskDialogIsOpen && <EditTaskDialog taskData={editTaskData} />}
-      {editTaskDialogFromViewIsOpen && (
-        <EditTaskDialog taskData={viewTaskDataToEdit} />
-      )}
+      {editTaskDialogIsOpen && <EditTaskDialog taskData={editTaskDialogFromViewIsOpen &&  editTaskDialogIsOpen ? viewTaskDataToEdit : editTaskData } />}
       {viewTaskDialogIsOpen && <ViewTaskDialog taskData={viewTaskData} />}
+      {deleteTaskDialogIsOpen && <DeleteTaskDialog tasksToDelete={tasksToDelete}/>}
       <div className=" sticky top-52 bg-white shadow-sm border border-blue-800  p-4 rounded flex flex-wrap items-center w-4/5 justify-self-center">
         <div className="row-span-2 flex ml-10 items-center justify-self-center">
           <AllPurposeCheckBox
@@ -190,7 +217,7 @@ function TasksPage() {
         </div>
 
         <div className="pl-10 grow flex flex-wrap space-x-10 mr-10 w-1/2 justify-center">
-          <button title="delete" className={deleteButtonStyle}>
+          <button title="delete" className={deleteButtonStyle} onClick={handleDeleteFromNav}>
             Delete {deleteIcon}
           </button>
           <button
