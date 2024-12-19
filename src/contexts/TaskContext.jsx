@@ -9,9 +9,9 @@ export const TaskDialogProvider = ({ children }) => {
   const [editTaskDialogIsOpen, setEditTaskDialogIsOpen] = useState(false);
   const [editTaskDialogFromViewIsOpen, setEditDialogTaskFromViewIsOpen] =
     useState(false);
-  const [viewTaskDataToEdit, setViewTaskDataToEdit] = useState({});
+  const [viewTaskDataToExport, setViewTaskDataToExport] = useState({});
   const [deleteTaskDialogIsOpen, setDeleteTaskDialogIsOpen] = useState(false);
-  const [confirmedDeleteTask, setConfirmedDeleteTask] = useState(false);
+  const [deleteTaskFromView, setDeleteTaskFromView,] = useState(false);
 
   return (
     <TaskDialogContext.Provider
@@ -24,8 +24,8 @@ export const TaskDialogProvider = ({ children }) => {
         setEditTaskDialogIsOpen,
         editTaskDialogFromViewIsOpen,
         setEditDialogTaskFromViewIsOpen,
-        viewTaskDataToEdit, setViewTaskDataToEdit,
-        deleteTaskDialogIsOpen, setDeleteTaskDialogIsOpen, confirmedDeleteTask, setConfirmedDeleteTask
+        viewTaskDataToExport, setViewTaskDataToExport,
+        deleteTaskDialogIsOpen, setDeleteTaskDialogIsOpen, deleteTaskFromView, setDeleteTaskFromView,
       }}
     >
       {children}

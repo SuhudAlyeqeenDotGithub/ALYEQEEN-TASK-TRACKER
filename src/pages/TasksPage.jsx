@@ -12,7 +12,7 @@ function TasksPage() {
   const taskContainerStyle =
     "cursor-pointer gap-2 text-blue-900 font-semibold p-2 rounded-md bg-white border border-blue-800  shadow-sm mb-2 mr-2 flex flex-wrap w-2/5 max-w-2/4 min-w-96 items-center justify-center hover:bg-blue-50";
   const regularButtonStyle = `cursor-pointer text-blue-900 font-semibold shadow-sm p-2 pr-4 pl-4 mt-2 rounded-md border border-blue-800  row-span-2 flex items-center justify-center hover:bg-blue-800  hover:text-white hover:border-none gap-2`;
-  const tasksData = Array.from({ length: 10 }, (item, i) => {
+  const tasksData = Array.from({ length: 100 }, (item, i) => {
     return {
       taskId: i,
       taskName: `Task Name ${i}`,
@@ -40,10 +40,9 @@ function TasksPage() {
     setEditTaskDialogIsOpen,
     editTaskDialogFromViewIsOpen,
     setEditDialogTaskFromViewIsOpen,
-    viewTaskDataToEdit,
-    setViewTaskDataToEdit,
+    viewTaskDataToExport, setViewTaskDataToExport,
     deleteTaskDialogIsOpen, setDeleteTaskDialogIsOpen,
-    confirmedDeleteTask, setConfirmedDeleteTask
+    deleteTaskFromView, setDeleteTaskFromView,
   } = useContext(TaskDialogContext);
 
   const oneOrMoreRegBoxIsTrue = regularCheckBoxStatus.some(
@@ -195,9 +194,9 @@ function TasksPage() {
   return (
     <div className="">
       {newTaskDialogIsOpen && <NewTaskDialog />}
-      {editTaskDialogIsOpen && <EditTaskDialog taskData={editTaskDialogFromViewIsOpen &&  editTaskDialogIsOpen ? viewTaskDataToEdit : editTaskData } />}
+      {editTaskDialogIsOpen && <EditTaskDialog taskData={editTaskDialogFromViewIsOpen &&  editTaskDialogIsOpen ? viewTaskDataToExport : editTaskData } />}
       {viewTaskDialogIsOpen && <ViewTaskDialog taskData={viewTaskData} />}
-      {deleteTaskDialogIsOpen && <DeleteTaskDialog tasksToDelete={tasksToDelete}/>}
+      {deleteTaskDialogIsOpen && !deleteTaskFromView && <DeleteTaskDialog tasksToDelete={tasksToDelete}/>}
       <div className=" sticky top-52 bg-white shadow-sm border border-blue-800  p-4 rounded flex flex-wrap items-center w-4/5 justify-self-center">
         <div className="row-span-2 flex ml-10 items-center justify-self-center">
           <AllPurposeCheckBox

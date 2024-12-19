@@ -9,6 +9,7 @@ import { TaskDialogContext } from "../contexts/TaskContext";
 import { editIcon, deleteIcon, closeIcon } from "./icons";
 import { RegularParagraph, TaskStatusChip } from "./ShortComponents";
 import EditTaskDialog from "./EditTaskDialog";
+import DeleteTaskDialog from "./deleteTaskDialog";
 
 const ViewTaskDialog = ({ taskData }) => {
   const {
@@ -18,7 +19,7 @@ const ViewTaskDialog = ({ taskData }) => {
     setEditTaskDialogIsOpen,
     editTaskDialogFromViewIsOpen,
         setEditDialogTaskFromViewIsOpen,
-        viewTaskDataToEdit, setViewTaskDataToEdit
+        viewTaskDataToExport, setViewTaskDataToExport, deleteTaskDialogIsOpen, setDeleteTaskDialogIsOpen, deleteTaskFromView, setDeleteTaskFromView
   } = useContext(TaskDialogContext);
 
   const {
@@ -41,7 +42,7 @@ const ViewTaskDialog = ({ taskData }) => {
 
   const handleEditTaskFromView = () => {
     if (editTaskDialogIsOpen === false) {
-      setViewTaskDataToEdit(taskData);
+      setViewTaskDataToExport(taskData);
       setEditTaskDialogIsOpen(true);
       setEditDialogTaskFromViewIsOpen(true);
       setViewTaskDialogIsOpen(false);
@@ -49,9 +50,20 @@ const ViewTaskDialog = ({ taskData }) => {
     }
   };
 
+  const handleDeleteTaskFromView = () => {
+   if(!deleteTaskDialogIsOpen && !deleteTaskFromView){
+    const dataNeededToDelete = [`Task Id: ${taskData.taskId} || Task Name: ${taskName}`]
+    setViewTaskDataToExport(dataNeededToDelete);
+    setDeleteTaskDialogIsOpen(true);
+    
+    setDeleteTaskFromView(true)
+   }
+
+  }
+
   const scrollBarStyling = `overflow-auto scrollbar scrollbar-thumb-white scrollbar-track-blue-900`;
 
-  const dialogueStyling = ` ${scrollBarStyling} pl-6 pr-6 pt-2 pb-8 bg-white z-50 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl border border-blue-300 shadow-lg max-w-md min-w-[400px] flex flex-wrap h-full min-h-[400] max-h-[600px]`;
+  const dialogueStyling = ` ${scrollBarStyling} pl-6 pr-6 pt-2 pb-8 bg-white z-40 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-xl border border-blue-300 shadow-lg max-w-md min-w-[400px] flex flex-wrap h-full min-h-[400] max-h-[600px]`;
   const overlayStyling = `fixed bg-blue-100 bg-opacity-90 inset-0 border z-10 flex items-center`;
   const buttonStyling = `justify-center text-blue-900 hover:text-white text-xl p-2 rounded-lg`;
   const gridStyling = `w-full flex flex-wrap gap-x-24`;
@@ -60,6 +72,7 @@ const ViewTaskDialog = ({ taskData }) => {
     viewTaskDialogIsOpen && (
       <>
         {editTaskDialogIsOpen && <EditTaskDialog taskData={taskData} />}
+        {deleteTaskFromView && <DeleteTaskDialog tasksToDelete={viewTaskDataToExport}/>}
         <div className={overlayStyling} onClick={handleCloseViewTask}></div>
         <AllPurposeContainer containerStyling={dialogueStyling}>
           <div className="flex flex-col gap-8">
@@ -73,11 +86,7 @@ const ViewTaskDialog = ({ taskData }) => {
                   <button
                     title="delete"
                     className={`hover:bg-blue-900 ${buttonStyling}`}
-                    onClick={() => {
-                      alert(
-                        `Hey this is not real but you have just deleted the task1 ${taskId}`,
-                      );
-                    }}
+                    onClick={handleDeleteTaskFromView}
                   >
                     {deleteIcon}
                   </button>
